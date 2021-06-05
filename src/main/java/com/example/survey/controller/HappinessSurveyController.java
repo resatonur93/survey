@@ -13,19 +13,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HappinessSurveyController {
-    private FootballSurveyService footballSurveyService;
-    private HappinessSurveyService happinessSurveyService;
     @Autowired
-    public HappinessSurveyController(FootballSurveyService footballSurveyService, HappinessSurveyService happinessSurveyService) {
-        this.footballSurveyService = footballSurveyService;
-        this.happinessSurveyService = happinessSurveyService;
-    }
+    private FootballSurveyService footballSurveyService;
+    @Autowired
+    private HappinessSurveyService happinessSurveyService;
+
     @GetMapping("/happinessSurvey")
     public String showHappinessSurvey(HappinessSurvey happinessSurvey){
         return "add-happiness-survey";
     }
     @PostMapping("/addHappinessSurvey")
-    public String addHappinessSurvey(HappinessSurvey happinessSurvey, BindingResult result){
+    public String addHappinessSurvey(HappinessSurvey happinessSurvey, BindingResult result,Model model){
         if(result.hasErrors()){
             return "add-happiness-survey";
         }
@@ -33,7 +31,7 @@ public class HappinessSurveyController {
         return "redirect:/indexHappinessSurvey";
     }
     @GetMapping("/indexHappinessSurvey")
-    public String showHappinessSurvey(HappinessSurvey happinessSurvey, Model model){
+    public String showHappinessSurveyList(Model model){
         model.addAttribute("averageHappiness",happinessSurveyService.calculateHappinessRate());
         model.addAttribute("happinessSurveyList",happinessSurveyService.findAll());
         model.addAttribute("footballSurveyList",footballSurveyService.findAll());
@@ -45,7 +43,7 @@ public class HappinessSurveyController {
         model.addAttribute("happinessSurvey",happinessSurvey);
         return "update-happiness-survey";
     }
-    @PostMapping("/editHappinessSurvey/{id}")
+    @PostMapping("/updateHappinessSurvey/{id}")
     public String updateHappinessSurvey(@PathVariable("id") long id,HappinessSurvey happinessSurvey,
                                         BindingResult result){
         if(result.hasErrors()){
@@ -55,8 +53,8 @@ public class HappinessSurveyController {
         happinessSurveyService.saveHappinessSurvey(happinessSurvey);
         return "redirect:/indexHappinessSurvey";
     }
-    @GetMapping("/deleteHappingSurvey/{id}")
-    public String deleteHappinessSurvey(@PathVariable("id") long id, Model model){
+    @GetMapping("/deleteHappinessSurvey/{id}")
+    public String deleteHappinessSurvey(@PathVariable("id") long id){
         happinessSurveyService.delete(id);
         return "redirect:/indexHappinessSurvey";
     }
