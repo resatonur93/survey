@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Futbol Anketi</title>
+</head>
+<body style="background-color:powderblue;" >
+<div align="center"><h1>Favori Futbol Takım Anketine Hoş Geldiniz.</h1></div>
+
+  <!--/*@thymesVar id="footballSurvey" type="com.example.survey.model.FootballSurvey"*/-->
+  <form action="#"
+        th:action="@{/updateFootballSurvey/{id}(id=${footballSurvey.id})}"
+  th:object="${footballSurvey}"
+  method="post">
+    <label for="name">Ad:</label><br>
+    <input type="text" th:field="*{name}" id="name" required>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br>
+
+    <label for="surname">Soyad:</label><br>
+    <input type="text" th:field="*{surname}" id="surname" required>
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span><br>
+
+    <label for="gender">Cinsiyet:</label><br>
+    <input type="text" th:field="*{gender}" id="gender" required>
+    <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender} "></span><br>
+
+    <label for="birthDate">Doğum günü:</label><br>
+    <input type="text" th:field="*{birthDate}" id="birthDate" placeholder="YYYY-AA-GG" required>
+    <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span><br>
+
+    <label for="description">Açıklaması:</label><br>
+    <input type="text" th:field="*{description}" id="description" required>
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br>
+
+    <label for="pollsterName">Anketörün adı:</label><br>
+    <input type="text" th:field="*{pollsterName}" id="pollsterName" required>
+    <span th:if="${#fields.hasErrors('pollsterName')}" th:errors="*{pollsterName}"></span><br>
+
+    <label for="pollsterSurname">Anketörün Soyadı:</label><br>
+    <input type="text" th:field="*{pollsterSurname}" id="pollsterSurname" required>
+    <span th:if="${#fields.hasErrors('pollsterSurname')}" th:errors="*{pollsterSurname}"></span><br>
+
+    <input type="submit" value="Güncelle">
+</form>
+</body>
+</html>

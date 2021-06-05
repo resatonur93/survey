@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ANKET</title>
+</head>
+<body style="background-color:powderblue;">
+
+<div align="center"><h1>Anketimize Hoş Geldiniz.</h1></div>
+
+    <div align="center" th:switch="${footballSurveyList}">
+        <h2 th:case="null">Henüz futbol anketi oluşturulmadı.</h2>
+            <div th:case="*">
+                <h2>Futbol Anketi</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Adınız:</th>
+                            <th>Soyadınız:</th>
+                            <th>Cinsiyet:</th>
+                            <th>Doğum günü:</th>
+                            <th>Tuttuğunuz takım:</th>
+                            <th>Açıklaması:</th>
+                            <th>Anketörün Adı:</th>
+                            <th>Anketörün Soyadı:</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="survey : ${footballSurveyList}">
+                        <td th:text="${survey.name}"></td>
+                        <td th:text="${survey.surname}"></td>
+                        <td th:text="${survey.gender}"></td>
+                        <td th:text="${survey.birthDate}"></td>
+                        <td th:text="${survey.footballTeam}"></td>
+                        <td th:text="${survey.description}"></td>
+                        <td th:text="${survey.pollsterName}"></td>
+                        <td th:text="${survey.pollsterSurname}"></td>
+
+                        <td><a th:href="@{/editFootballSurvey/{id}(id=${survey.id})}">Güncelle</a></td>
+                        <td><a th:href="@{/deleteFootballSurvey/{id}(id=${survey.id})}">Kaldır</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>      
+        <p><a href="/footballSurvey">Yeni Futbol Anketi Ekle</a></p>
+    </div>
+
+    <div align="center" th:switch="${happinessSurveyList}">
+        <h2 th:case="null">Henüz mutluluk anketi oluşturulmadı.</h2>
+        <div th:case="*">
+            <h2>Mutluluk Anketi</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>Adınız:</th>
+                    <th>Soyadınız:</th>
+                    <th>Cinsiyet:</th>
+                    <th>Doğum günü:</th>
+                    <th>Açıklaması:</th>
+                    <th>Mutluluk Oranı:</th>
+                    <th>Sizi en mutlu eden şey:</th>
+                    <th>Sizi en mutsuz eden şey:</th>
+                    <th>Anketörün Adı:</th>
+                    <th>Anketörün Soyadı:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="survey : ${happinessSurveyList}">
+                    <td th:text="${survey.name}"></td>
+                    <td th:text="${survey.surname}"></td>
+                    <td th:text="${survey.gender}"></td>
+                    <td th:text="${survey.birthDate}"></td>
+                    <td th:text="${survey.description}"></td>
+                    <td th:text="${survey.rate}"></td>
+                    <td th:text="${survey.happiestThing}"></td>
+                    <td th:text="${survey.mostDisappointingThing}"></td>
+                    <td th:text="${survey.pollsterName}"></td>
+                    <td th:text="${survey.pollsterSurname}"></td>
+
+                    <td><a th:href="@{/editHappinessSurvey/{id}(id=${survey.id})}">Güncelle</a></td>
+                    <td><a th:href="@{/deleteHappinessSurvey/{id}(id=${survey.id})}">Kaldır</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <p><a href="/happinessSurvey">Yeni Mutluluk Anketi Ekle</a></p><br>
+        <div>
+            <!-- TODO -->
+            <h2>İstatistikler</h2>
+            <tr>
+                Ortalama Mutluluk : <td th:text="${averageHappiness}"></td>
+            </tr>
+            </br>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mutluluk Anketi</title>
+</head>
+<body style="background-color:powderblue;">
+<div align="center"><h1>Mutluluk Anketine Hoş Geldiniz.</h1></div>
+
+  <!--/*@thymesVar id="happinessSurvey" type="com.example.survey.model.HappinessSurvey"*/-->
+  <form action="#" th:action="@{/addHappinessSurvey}" th:object="${happinessSurvey}" method="post">
+    <label for="name">Ad:</label><br>
+    <input type="text" th:field="*{name}" id="name" required >
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br>
+
+    <label for="surname">Soyad:</label><br>
+    <input type="text" th:field="*{surname}" id="surname" required >
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span><br>
+
+    <label for="gender">Cinsiyet:</label><br>
+    <input type="text" th:field="*{gender}" id="gender" required>
+    <span th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span><br>
+
+    <label for="birthDate">Doğum günü:</label><br>
+    <input type="text" th:field="*{birthDate}" id="birthDate"placeholder="YYYY-AA-GG" required>
+    <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span><br>
+
+    <label for="description">Açıklaması:</label><br>
+    <input type="text" th:field="*{description}" id="description" required >
+    <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br>
+
+    <label for="rate">Mutluluk Oranı :</label><br>
+    <input type="number" min="1" max="10" th:field="*{rate}" id="rate" >
+    <span th:if="${#fields.hasErrors('rate')}" th:errors="*{rate}"></span><br>
+
+    <label for="happiestThing">Sizi en mutlu eden şey :</label><br>
+    <input type="text" th:field="*{happiestThing}" id="happiestThing" required>
+    <span th:if="${#fields.hasErrors('happiestThing')}" th:errors="*{happiestThing}"></span><br>
+
+    <label for="mostDisappointingThing">Sizi en mutsuz eden şey :</label><br>
+    <input type="text" th:field="*{mostDisappointingThing}" id="mostDisappointingThing" required>
+    <span th:if="${#fields.hasErrors('mostDisappointingThing')}" th:errors="*{mostDisappointingThing}"></span><br>
+
+    <label for="pollsterName">Anketörün adı :</label><br>
+    <input type="text" th:field="*{pollsterName}" id="pollsterName" required>
+    <span th:if="${#fields.hasErrors('pollsterName')}" th:errors="*{pollsterName}"></span><br>
+
+    <label for="pollsterSurname">Anketörün Soyadı :</label><br>
+    <input type="text" th:field="*{pollsterSurname}" id="pollsterSurname" required>
+    <span th:if="${#fields.hasErrors('pollsterSurname')}" th:errors="*{pollsterSurname}"></span><br><br>
+
+    <input type="submit" value="Anket ekle">   
+</form>
+</body>
+</html>
