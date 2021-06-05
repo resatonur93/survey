@@ -18,17 +18,20 @@ public class HappinessSurveyService {
     }
     public HappinessSurvey findById(long id){
         return happinessSurveyRepository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Girilen id geçersiz."));
+                .orElseThrow(()->new IllegalArgumentException("Girilen id geçersiz." +id));
     }
     public List<HappinessSurvey> findAll(){
         return happinessSurveyRepository.findAll();
     }
+
     public void delete(long id){
         HappinessSurvey happinessSurvey = happinessSurveyRepository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Girilen id geçersiz."));
+                .orElseThrow(()-> new IllegalArgumentException("Girilen id geçersiz." +id));
+        happinessSurveyRepository.delete(happinessSurvey);
     }
-    public double calculateHappinessRate(){
-        OptionalDouble average = this.findAll().stream().mapToDouble(HappinessSurvey::getRate).average();
-        return average.getAsDouble();
+    public double calculateHappinessRate() {
+        List<HappinessSurvey> happinessSurveyList = this.findAll();
+        return !happinessSurveyList.isEmpty() ? happinessSurveyList.stream().
+                mapToDouble(HappinessSurvey::getRate).average().getAsDouble() : 0.0;
     }
 }
