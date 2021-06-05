@@ -29,8 +29,7 @@ public class Survey {
     @Column(name = "gender")
     private String gender;
 
-
-    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "birth_day")
     private Date birthDate;
 
