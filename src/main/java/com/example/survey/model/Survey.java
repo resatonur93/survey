@@ -1,12 +1,19 @@
 package com.example.survey.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.jmx.export.annotation.ManagedNotifications;
+
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Survey {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +29,10 @@ public class Survey {
     @Column(name = "gender")
     private String gender;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+
+    @Temporal(TemporalType.DATE)
     @Column(name = "birth_day")
-    private LocalDate birthDate;
+    private Date birthDate;
 
     @Column(name = "description")
     private String description;
