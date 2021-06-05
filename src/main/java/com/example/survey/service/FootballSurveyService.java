@@ -16,7 +16,7 @@ public class FootballSurveyService {
         return footballSurveyRepository.save(footballSurvey);
     }
 
-    public FootballSurvey findById(Long id){
+    public FootballSurvey findById(long id){
         return footballSurveyRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("Girilen id geçersiz."));
     }
