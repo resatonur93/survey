@@ -7,7 +7,7 @@
 <body style="background-color:powderblue;">
 <div align="center"><h1>Mutluluk Anketine Hoş Geldiniz.</h1></div>
 
-  <!--/*@thymesVar id="footballSurvey" type="com.example.survey.model.HappinessSurvey"*/-->
+  <!--/*@thymesVar id="happinessSurvey" type="com.example.survey.model.HappinessSurvey"*/-->
   <form action="#"
         th:action="@{/updateHappinessSurvey/{id}(id=${happinessSurvey.id})}"
   th:object="${happinessSurvey}"
