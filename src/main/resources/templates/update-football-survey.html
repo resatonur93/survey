@@ -28,6 +28,10 @@
     <input type="text" th:field="*{birthDate}" id="birthDate" placeholder="YYYY-AA-GG" required>
     <span th:if="${#fields.hasErrors('birthDate')}" th:errors="*{birthDate}"></span><br>
 
+    <label for="footballTeam">Takımı:</label><br>
+    <input type="text" th:field="*{footballTeam}" id="footballTeam" required>
+    <span th:if="${#fields.hasErrors('footballTeam')}" th:errors="*{footballTeam}"></span><br>
+
     <label for="description">Açıklaması:</label><br>
     <input type="text" th:field="*{description}" id="description" required>
     <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span><br>
